@@ -1,0 +1,71 @@
+#root {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 2rem;
+	text-align: center;
+}
+
+.logo {
+	height: 6em;
+	padding: 1.5em;
+	will-change: filter;
+	transition: filter 300ms;
+}
+
+.logo:hover {
+	filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+	filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media(prefers-reduced-motion: no-preference) {
+	a:nth-of-type(2) .logo {
+		animation: logo-spin infinite 10s linear;
+	}
+}
+
+.card {
+	padding: 2em;
+}
+
+.btn-google {
+    display: inline-flex;
+    align-items: center;
+    background-color: #ffffff;
+    color: #555555;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+}
+
+.btn-google:hover {
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	filter: drop-shadow(0 0 2em #b6b7b9aa);
+}
+
+.btn-google img {
+    height: 20px;
+    margin-right: 10px;
+}
+
+.read-the-docs {
+	color: #888;
+}
