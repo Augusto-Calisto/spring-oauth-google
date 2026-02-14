@@ -11,7 +11,7 @@ import { useAuth } from "../../context/AuthContext";
 import "./style.css";
 
 const Login = () => {
-	const { isAuthenticated } = useAuth();
+	const { user, isAuthenticated } = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -19,7 +19,7 @@ const Login = () => {
     const fromLocation = (location.state)?.from?.pathname || "/";
 
     useEffect(() => {
-        if(isAuthenticated) {
+        if(isAuthenticated && user) {
             navigate(fromLocation, { replace: true })
         }
     }, [isAuthenticated, fromLocation, navigate]);
@@ -33,7 +33,7 @@ const Login = () => {
     }
 
 	return (
-		<>
+		<div className="container">
 			<div id="container-logo">
 				<a>
 					<img src="/img/vite.svg" className="logo" alt="Vite logo"/>
@@ -56,7 +56,7 @@ const Login = () => {
 			<p className="read-the-docs">
 				Click on the Vite and React logos to learn more
 			</p>
-		</>
+		</div>
 	)
 }
 
