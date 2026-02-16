@@ -1,6 +1,7 @@
 package br.com.tech.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +16,5 @@ public class AuthSuccessResponse implements Serializable {
 	private String email;
 	private String urlPicture;
 	private String token;
-	private String role;
+	private List<String> roles;
 }
