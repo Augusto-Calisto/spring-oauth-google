@@ -22,7 +22,16 @@ const ProtectedRoute = ({ allowedRoles }) => {
     }
 
     // 3. Verifica se a role do usuário está na lista de permissões
-    const hasAccess = allowedRoles.includes(user?.role);
+    const userRoles = user?.roles;
+
+    let hasAccess = false;
+    
+    userRoles.forEach((role) => {
+        if(allowedRoles.includes(role)) {
+            hasAccess = true;
+            return ;
+        }
+    });
 
     return hasAccess ? <Outlet/> : <Navigate to="/forbidden" replace />;
 };
