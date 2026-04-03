@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -38,10 +37,9 @@ public class UserController {
 		
 		String sub = oidcUser.getAttribute("sub");
 		
-		String registrationId = authorizedClient.getClientRegistration().getRegistrationId();
+		String providerName = authorizedClient.getClientRegistration().getRegistrationId();
 		
-		
-		Optional<User> optional = userService.findBySubAndRegistrationId(sub, registrationId);
+		Optional<User> optional = userService.findBySubAndRegistrationId(sub, providerName);
 		
 		if(optional.isPresent()) {
 			User user = optional.get();
@@ -56,7 +54,9 @@ public class UserController {
 													.email(user.getEmail())
 													.familyName(oidcUser.getClaim("family_name"))
 													.urlPicture(oidcUser.getClaim("picture"))
+													.providerName(providerName)
 													.token(oidcUser.getIdToken().getTokenValue())
+													.scopes(authorizedClient.getClientRegistration().getScopes())
 													.roles(userRoles)
 												.build();
 						
