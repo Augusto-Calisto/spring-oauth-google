@@ -14,19 +14,87 @@ const Home = () => {
     }
 
     return (
-        <div className="container-home">
-            <div className="container-welcome">
-                <img src={user?.urlPicture} alt="Imagem Perfil do Usuario"/>
-                <h3> Welcome, { user?.name } </h3>
-            </div>
+        <div className="dash-wrapper">
+            <aside className="dash-sidebar">
+                <div className="dash-brand">
+                    <div className="dash-logo-sq"> S </div>
+                    <span> App Manager </span>
+                </div>
+                
+                <nav className="dash-nav">
+                    <a href="#" className="dash-nav-link active">
+                        <span> 📊 </span> Dashboard
+                    </a>
 
-            <div className="container-info">
-                <textarea cols={170} rows={20}>
-                    { JSON.stringify(user) }
-                </textarea>
+                    <a href="#" className="dash-nav-link">
+                        <span> 🔑 </span> Credenciais
+                    </a>
 
-                <button onClick={handleLogout}> Logout </button>
-            </div>
+                    <a href="#" className="dash-nav-link">
+                        <span> 🛡️ </span> Segurança
+                    </a>
+                </nav>
+
+                <div className="dash-user-badge">
+                    <div className="dash-user-info">
+                        <span className="dash-username"> { user?.name || "Erro ao carregar nome" } </span>
+                        <span className="dash-status"> Online </span>
+                    </div>
+                </div>
+            </aside>
+
+            <main className="dash-main">
+                <header className="dash-header">
+                    <div className="dash-header-left">
+                        <h1> Visão Geral do Perfil </h1>
+                        <p> Dados recuperados via OAuth 2.0 </p>
+                    </div>
+
+                    <button onClick={handleLogout} className="dash-btn-logout">
+                        Sair
+                    </button>
+                </header>
+
+                <div className="dash-content-grid">
+                    <section className="dash-card dash-profile-hero">
+                        <div className="dash-hero-content">
+                            <div className="dash-avatar-container">
+                                <img src={ user?.urlPicture } alt="User"/>
+                            </div>
+
+                            <div className="dash-hero-text">
+                                <h2> { user?.name || "Usuário" } </h2>
+
+                                <p> { user?.email || "email@exemplo.com" } </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div className="dash-info-row">
+                        <article className="dash-card dash-info-box">
+                            <label> Último Login </label>
+                            <strong> 28 de Março, 2026 </strong>
+                        </article>
+
+                        <article className="dash-card dash-info-box">
+                            <label> Provedor de Login </label>
+                            <strong className="provider-google"> { user?.providerName?.toUpperCase() || "N/A" } </strong>
+                        </article>
+                    </div>
+
+                    <section className="dash-card">
+                        <h3 className="dash-card-title"> Escopos de Acesso (Scopes) </h3>
+
+                        <div className="dash-scopes">
+                            {user?.scopes.map((scope, index) => (
+                                <span key={index} className="dash-scope-pill">
+                                    {scope}
+                                </span>
+                            ))}
+                        </div>
+                    </section>
+                </div>
+            </main>
         </div>
     )
 }
